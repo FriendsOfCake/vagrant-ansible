@@ -1,0 +1,10 @@
+---
+memory: 64
+port: 11_211
+udp_port: 11_211
+listen: 0.0.0.0
+maxconn: 1024
+max_object_size: 1m
+logfile: /var/log/memcached.log
+user: memcache
+group: memcache

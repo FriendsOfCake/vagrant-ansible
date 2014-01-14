@@ -1,0 +1,13 @@
+---
+- name: Install Memcached and Dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libmemcache-dev
+    - memcached
+
+- name: Copy configuration file
+  template: src=memcached.conf dest=/etc/memcached.conf
+  notify: restart memcached
+
+- name: Start Memcached
+  service: name=memcached state=started enabled=true

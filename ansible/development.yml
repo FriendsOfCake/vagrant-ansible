@@ -10,3 +10,4 @@
     - nginx
     - percona
     - redis
+    - memcached
