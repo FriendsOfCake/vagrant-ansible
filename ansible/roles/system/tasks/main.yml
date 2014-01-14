@@ -4,3 +4,6 @@
   with_items:
     - curl
     - python-pycurl
+
+- name: Install Git
+  apt: pkg=git-core state=present
