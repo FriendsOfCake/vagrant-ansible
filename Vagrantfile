@@ -7,7 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/vagrant", :nfs => true
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ansible/playbook.yml"
+    ansible.playbook = "ansible/development.yml"
     ansible.inventory_path = "ansible/hosts"
   end
 end
