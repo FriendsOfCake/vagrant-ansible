@@ -1,0 +1,3 @@
+---
+server_hostname: app.dev
+server_root: /vagrant/app/webroot

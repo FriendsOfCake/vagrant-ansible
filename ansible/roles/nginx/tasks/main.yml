@@ -1,0 +1,21 @@
+---
+- name: Install nginx
+  apt: pkg=nginx state=present
+
+- name: Copy sites configuration
+  template: src={{ item }} dest=/etc/nginx/sites-enabled/{{ item }}
+  with_items:
+    - default
+    - app
+  notify: restart nginx
+
+- name: Copy shared configuration
+  template: src={{ item }} dest=/etc/nginx/{{ item }}
+  with_items:
+    - cakephp.conf
+    - fastcgi_params
+    - php.conf
+  notify: restart nginx
+
+- name: Start Nginx
+  service: name=nginx state=started enabled=true

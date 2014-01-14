@@ -1,0 +1,12 @@
+---
+- name: Deploys the whole software stack for a CakePHP application
+  hosts: development
+  user: vagrant
+  sudo: yes
+
+  roles:
+    - common
+    - php
+    - nginx
+    - percona
+    - redis

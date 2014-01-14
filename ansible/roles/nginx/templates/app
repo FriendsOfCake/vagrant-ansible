@@ -1,0 +1,17 @@
+# Redirect from www.example.com to example.com
+server {
+    listen 80;
+    server_name www.{{ server_hostname }};
+    rewrite ^ http://{{ server_hostname }}$uri permanent;
+}
+
+server {
+    listen 80;
+    server_name {{ server_hostname }};
+
+    root {{ server_root }};
+    access_log /var/log/nginx/{{ server_hostname }}-access.log;
+    access_log /var/log/nginx/{{ server_hostname }}-error.log;
+
+    include cakephp.conf;
+}
