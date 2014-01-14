@@ -25,9 +25,7 @@
     - php-pear
 
 - name: Install Composer
-  shell:
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer
-    creates=/usr/local/bin/composer
+  get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=0755
 
 - name: Copy pool configuration
   template: src=www.conf dest=/etc/php5/fpm/pool.d/
