@@ -1,0 +1,9 @@
+---
+- name: Install Postgres Server and Client
+  apt: pkg={{ item }} state=present
+  with_items:
+    - postgresql
+    - postgresql-client
+
+- name: Start Postgres
+  service: name=postgresql state=started enabled=true

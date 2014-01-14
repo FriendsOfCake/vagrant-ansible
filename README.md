@@ -6,6 +6,7 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 - Ningx 1.1
 - PHP 5.5
 - Percona 5.5 (MySQL Drop-in Replacement)
+- Postgres 9.1
 - Redis 2.8
 - Memcached 1.4
 - Git 1.7

@@ -9,5 +9,6 @@
     - php
     - nginx
     - percona
+    - postgresql
     - redis
     - memcached
