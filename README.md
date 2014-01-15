@@ -67,8 +67,7 @@ Follow more instructions on how to configure the application at [cakephp/app](ht
 #### Create new application with [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template):
 
 ```
-composer -sdev create-project friendsofcake/app-template app-template
-mv app-template/{app,Plugin,vendor,composer.json,composer.lock} . && rm -rf app-template
+composer -sdev create-project friendsofcake/app-template .
 ```
 
 Browse to `http://app.dev`, an CakePHP application should be running now!
