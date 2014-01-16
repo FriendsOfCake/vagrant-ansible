@@ -1,3 +1,44 @@
 ---
-server_hostname: app.dev
-server_root: /vagrant/app/webroot
+nginx_http_params:
+  access_log: /var/log/nginx/access.log
+  error_log: /var/log/nginx/error.log
+
+nginx_sites:
+  - server:
+      file_name: default
+      listen: 80
+      server_name: localhost
+      root: /usr/share/nginx/www
+      index: index.html
+      location1:
+        name: /
+        try_files: "$uri $uri/ /index.html"
+      location2:
+        name: /images/
+        root: /usr/share
+        autoindex: "off"
+
+  - server:
+      file_name: app
+      listen: 80
+      server_name: app.dev
+      root: /vagrant/app/webroot
+      access_log: /var/log/nginx/app-access.log
+      error_log: /var/log/nginx/app-error.log
+      index: index.php
+      location1:
+        name: /
+        try_files: "$uri $uri/ /index.php?$uri&$args"
+        expires: max
+        access_log: "off"
+      location2:
+        name: "~ \\.php$"
+        fastcgi_pass: "unix:/var/run/php5-fpm.sock"
+        include: fastcgi_params
+
+  # Redirect www.app.dev to app.dev
+  - server:
+      file_name: www.app
+      listen: 80
+      server_name: www.app.dev
+      rewrite: "^ http://app.dev$uri permanent"

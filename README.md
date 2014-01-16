@@ -17,13 +17,13 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
 - [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.4.3
-- [Ansible](http://docs.ansible.com/intro_installation.html). Tested on 1.4.4
+- [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.4.2 and tested on 1.4.4
 
 
 ## Installation
 
 ```
-git clone git@github.com:FriendsOfCake/vagrant-ansible.git
+git clone git@github.com:FriendsOfCake/vagrant-ansible.git --recurse-submodules
 cd vagrant-ansible
 vagrant up
 ```
