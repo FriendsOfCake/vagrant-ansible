@@ -56,7 +56,8 @@ Below you can choose between two methods to create a new application.
 #### Create new application with [cakephp/app](https://github.com/cakephp/app) for CakePHP 3.0.x:
 
 ```
-composer -sdev create-project cakephp/app app
+vagrant ssh
+composer -sdev create-project cakephp/app /vagrant/app
 ```
 
 Browse to `http://app.dev`, an CakePHP application should be running now!
@@ -67,7 +68,9 @@ Follow more instructions on how to configure the application at [cakephp/app](ht
 #### Create new application with [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template):
 
 ```
-composer -sdev create-project friendsofcake/app-template .
+vagrant ssh
+composer -sdev create-project friendsofcake/app-template app-template
+mv app-template/{app,Plugin,vendor,composer.json,composer.lock} /vagrant/ && rm -rf app-template
 ```
 
 Browse to `http://app.dev`, an CakePHP application should be running now!
