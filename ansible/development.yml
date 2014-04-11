@@ -7,7 +7,7 @@
   roles:
     - system
     - php
-    - nginx
+    - bennojoy.nginx
     - percona
     - postgresql
     - redis
