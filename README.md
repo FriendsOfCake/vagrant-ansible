@@ -52,6 +52,13 @@ Anything in `app/webroot/index.php` will be served up, and all other `index.php`
 
 Below you can choose between two methods to create a new application.
 
+First lets log in to the server and find the shared /vagrant directory:
+
+```
+vagrant ssh
+cd /vagrant
+```
+
 
 #### Create new application with [cakephp/app](https://github.com/cakephp/app) for CakePHP 3.0.x:
 
