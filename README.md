@@ -17,7 +17,8 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
 - [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.4.3
-- [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.4.2 and tested on 1.4.4
+-- [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+- [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.6!
 
 
 ## Installation
@@ -27,59 +28,13 @@ git clone git@github.com:FriendsOfCake/vagrant-ansible.git --recurse-submodules
 cd vagrant-ansible
 vagrant up
 ```
+Choose the CakePHP version you want to deploy (2 or 3)
 
 Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
 
 The setup is take some time to finish. Sit back and enjoy!
 
-When the setup is done browse to `http://192.168.13.37/` in your browser, and you should have some sort of `It works!` page!
-
-
-### Custom Domain Name
-
-Edit your /etc/hosts file to have the following line:
-
-```
-192.168.13.37 www.app.dev app.dev
-```
-
-Note that www.app.dev will actually redirect to app.dev
-
-
-### Setup the Application
-
-Anything in `app/webroot/index.php` will be served up, and all other `index.php` files ignored.
-
-Below you can choose between two methods to create a new application.
-
-First lets log in to the server and find the shared /vagrant directory:
-
-```
-vagrant ssh
-cd /vagrant
-```
-
-
-#### Create new application with [cakephp/app](https://github.com/cakephp/app) for CakePHP 3.0.x:
-
-```
-composer -sdev create-project cakephp/app app
-```
-
-Browse to `http://app.dev`, an CakePHP application should be running now!
-
-Follow more instructions on how to configure the application at [cakephp/app](https://github.com/cakephp/app).
-
-
-#### Create new application with [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template):
-
-```
-composer -sdev create-project friendsofcake/app-template .
-```
-
-Browse to `http://app.dev`, an CakePHP application should be running now!
-
-Follow more instructions on how to configure the application at [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template).
+When the setup is done browse to `http://app.dev/` in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
 
 
 ## Installation for Multiple Applications
