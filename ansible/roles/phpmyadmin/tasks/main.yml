@@ -1,0 +1,24 @@
+---
+- name: Debconf for phpMyAdmin
+  debconf: name=phpmyadmin question='phpmyadmin/dbconfig-install' value='true' vtype='boolean'
+
+- name: Debconf for phpMyAdmin
+  debconf: name=phpmyadmin question='phpmyadmin/app-password-confirm' value='' vtype='password'
+
+- name: Debconf for phpMyAdmin
+  debconf: name=phpmyadmin question='phpmyadmin/mysql/admin-pass' value='' vtype='password'
+
+- name: Debconf for phpMyAdmin
+  debconf: name=phpmyadmin question='phpmyadmin/mysql/app-pass' value='' vtype='password'
+
+- name: Debconf for phpMyAdmin
+  debconf: name=phpmyadmin question='phpmyadmin/reconfigure-webserver' value='' vtype='multiselect'
+
+- name: Install phpMyAdmin
+  apt: pkg=phpmyadmin state=present
+
+- name: Configure site
+  file: path=/usr/share/nginx/html/phpmyadmin src=/usr/share/phpmyadmin state=link
+
+- name: Restart nginx
+  service: name=nginx state=restarted 
