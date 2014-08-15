@@ -22,13 +22,31 @@ nginx_sites:
       file_name: app
       listen: 80
       server_name: app.dev
-      root: /vagrant/app/webroot
+      root: /vagrant/www/webroot
       access_log: /var/log/nginx/app-access.log
       error_log: /var/log/nginx/app-error.log
       index: index.php
       location1:
         name: /
         try_files: "$uri $uri/ /index.php?$uri&$args"
+        expires: max
+        access_log: "off"
+      location2:
+        name: "~ \\.php$"
+        fastcgi_pass: "unix:/var/run/php5-fpm.sock"
+        include: fastcgi_params
+
+  - server:
+      file_name: phpmyadmin
+      listen: 80
+      server_name: phpmyadmin.app.dev
+      root: /usr/share/phpmyadmin/
+      access_log: /var/log/nginx/phpmyadmin-access.log
+      error_log: /var/log/nginx/phpmyadmin-error.log
+      index: index.php
+      location1:
+        name: /
+        try_files: "$uri $uri/ /index.php"
         expires: max
         access_log: "off"
       location2:
