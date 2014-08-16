@@ -17,7 +17,7 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
 - [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.4.3
--- [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+- [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater).
 - [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.6!
 
 
@@ -28,6 +28,13 @@ git clone git@github.com:FriendsOfCake/vagrant-ansible.git --recurse-submodules
 cd vagrant-ansible
 vagrant up
 ```
+
+! If above gives you an error with some encoding reference at the end, try setting this before running vagrant up:
+
+```
+export PYTHONIOENCODING='utf-8'
+```
+
 Choose the CakePHP version you want to deploy (2 or 3)
 
 Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
@@ -50,12 +57,6 @@ After configured, run it with:
 
 ```
 vagrant up
-```
-
-! If above gives you an error with some encoding reference at the end, try setting this before running vagrant up:
-
-```
-export PYTHONIOENCODING='utf-8'
 ```
 
 ### Custom Domain Name
