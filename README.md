@@ -52,6 +52,11 @@ After configured, run it with:
 vagrant up
 ```
 
+! If above gives you an error with some encoding reference at the end, try setting this before running vagrant up:
+
+```
+export PYTHONIOENCODING='utf-8'
+```
 
 ### Custom Domain Name
 

@@ -4,20 +4,19 @@
   user: vagrant
   sudo: yes
 
-  # vars_prompt:
+  vars_prompt:
 
-  # - name: "cakephp_version"
-  #   prompt: "What version of CakePHP do you want to deploy? (2 or 3)?"
-  #   default: "2"
-  #   private: no
+  - name: "cakephp_version"
+    prompt: "What version of CakePHP do you want to deploy? (2 or 3)?"
+    default: "2"
 
   roles:
+    - system
+    - php
+    - bennojoy.nginx
+    - percona
+    - postgresql
+    - redis
+    - memcached
     - phpmyadmin
-    # - system
-    # - php
-    # - bennojoy.nginx
-    # - percona
-    # - postgresql
-    # - redis
-    # - memcached
-    # - cakephp
+    - cakephp

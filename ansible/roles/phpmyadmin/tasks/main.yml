@@ -17,8 +17,11 @@
 - name: Install phpMyAdmin
   apt: pkg=phpmyadmin state=present
 
-- name: Configure site
-  file: path=/usr/share/nginx/html/phpmyadmin src=/usr/share/phpmyadmin state=link
+- name: Set root MySQL password
+  command: mysqladmin -u root password temppassword
 
-- name: Restart nginx
-  service: name=nginx state=restarted 
+# - name: Configure site
+#   file: path=/usr/share/nginx/html/phpmyadmin src=/usr/share/phpmyadmin state=link
+
+# - name: Restart nginx
+#   service: name=nginx state=restarted 
