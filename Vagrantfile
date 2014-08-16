@@ -17,5 +17,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.inventory_path = "ansible/hosts"
   end
 
-  config.vm.post_up_message = "Provisioning is done, visit http://app.dev for your CakePHP application! Visit http://phpmyadmin.app.dev for phpMyAdmin (MySQl credentials are root:temppassword)."
+  config.vm.post_up_message = "\n\nProvisioning is done, visit http://app.dev for your CakePHP application! \n\nVisit http://phpmyadmin.app.dev for phpMyAdmin (MySQl credentials are root:temppassword).\n\n"
 end
