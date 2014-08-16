@@ -5,7 +5,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.network "private_network", ip: "192.168.13.37"
   config.vm.hostname = "appdev"
+
+  #Add any alias:
   config.hostsupdater.aliases = ["app.dev","phpmyadmin.app.dev"]
+
   config.vm.synced_folder ".", "/vagrant", :nfs => true
 
   config.vm.provision "ansible" do |ansible|

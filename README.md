@@ -11,6 +11,7 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 - Memcached 1.4
 - Git 1.7
 - Composer
+- phpMyAdmin 3.4.10
 
 
 ## Requirements
@@ -20,11 +21,10 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 - [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater).
 - [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.6!
 
-
 ## Installation
 
 ```
-git clone git@github.com:FriendsOfCake/vagrant-ansible.git --recurse-submodules
+git clone https://github.com/FriendsOfCake/vagrant-ansible.git --recurse-submodules
 cd vagrant-ansible
 vagrant up
 ```
@@ -61,12 +61,11 @@ vagrant up
 
 ### Custom Domain Name
 
-Edit your /etc/hosts file to have the following line:
+Edit your Vagrantfile to have the following line:
 
 ```
-192.168.13.37 www.$appName.dev $appName.dev www.$anotherAppName.dev $anotherAppName.dev
+config.hostsupdater.aliases = ["app.dev","phpmyadmin.app.dev","whatever.dev","anotherapp.dev"]
 ```
-
 
 ### Configure Synced Folders
 
