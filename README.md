@@ -29,12 +29,6 @@ cd vagrant-ansible
 vagrant up
 ```
 
-! If above gives you an error with some encoding reference at the end, try setting this before running vagrant up:
-
-```
-export PYTHONIOENCODING='utf-8'
-```
-
 Choose the CakePHP version you want to deploy (2 or 3)
 
 Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
@@ -76,7 +70,6 @@ Add a new [synced_folder](http://docs.vagrantup.com/v2/synced-folders/basic_usag
 ```
 config.vm.synced_folder "/path/on/local", "/path/on/vagrant", :nfs => true
 ```
-
 
 ### Configure Nginx virtual hosts
 

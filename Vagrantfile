@@ -11,6 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder ".", "/vagrant", :nfs => true
 
+  #Fix for Ansible bug resulting in an encoding error
+  ENV['PYTHONIOENCODING'] = "utf-8"
+
   config.vm.provision "ansible" do |ansible|
     ansible.limit = 'all'
     ansible.playbook = "ansible/development.yml"
