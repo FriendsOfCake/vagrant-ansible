@@ -58,7 +58,12 @@ vagrant up
 Edit your Vagrantfile to have the following line:
 
 ```
-config.hostsupdater.aliases = ["app.dev","phpmyadmin.app.dev","whatever.dev","anotherapp.dev"]
+config.hostsupdater.aliases = [
+	"app.dev",
+	"phpmyadmin.app.dev",
+	"whatever.dev",
+	"anotherapp.dev"
+]
 ```
 
 ### Configure Synced Folders
