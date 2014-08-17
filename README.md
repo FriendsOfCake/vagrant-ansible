@@ -23,19 +23,21 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 
 ## Installation
 
-```
-git clone https://github.com/FriendsOfCake/vagrant-ansible.git --recurse-submodules
-cd vagrant-ansible
-vagrant up
-```
+1. Run the commands below:
 
-Choose the CakePHP version you want to deploy (2 or 3)
+	```
+	git clone https://github.com/FriendsOfCake/vagrant-ansible.git --recurse-submodules
+	cd vagrant-ansible
+	vagrant up
+	```
 
-Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
+2. Choose the CakePHP version you want to deploy (2 or 3)
 
-The setup is take some time to finish. Sit back and enjoy!
+3. Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
 
-When the setup is done browse to `http://app.dev/` in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
+4. The setup will take some time to finish. Sit back and enjoy!
+
+5. When the setup is done browse to `http://app.dev/` in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
 
 
 ## Installation for Multiple Applications
