@@ -19,9 +19,3 @@
 
 - name: Set root MySQL password
   command: mysqladmin -u root password temppassword
-
-# - name: Configure site
-#   file: path=/usr/share/nginx/html/phpmyadmin src=/usr/share/phpmyadmin state=link
-
-# - name: Restart nginx
-#   service: name=nginx state=restarted 
