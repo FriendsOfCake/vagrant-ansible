@@ -2,77 +2,42 @@
 
 Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with the following features:
 
-- Ubuntu 12.04 Precise Pangolin
-- Ningx 1.1
+- Ubuntu 14.04 Trusty Tahr (Ubuntu Server 64-bit 14.04 cloud image)
+- Ningx 1.4.6
 - PHP 5.5
 - Percona 5.5 (MySQL Drop-in Replacement)
-- Postgres 9.1
+- Postgres 9.3
 - Redis 2.8
 - Memcached 1.4
-- Git 1.7
+- Git 1.9
 - Composer
+- phpMyAdmin 4.0.10
 
 
 ## Requirements
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
-- [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.4.3
-- [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.4.2 and tested on 1.4.4
-
+- [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.6.3
+- [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater).
+- [Ansible](http://docs.ansible.com/intro_installation.html). Tested on 1.7 Requires at least 1.6!
 
 ## Installation
 
-```
-git clone git@github.com:FriendsOfCake/vagrant-ansible.git --recurse-submodules
-cd vagrant-ansible
-vagrant up
-```
+1. Run the commands below:
 
-Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
+	```
+	git clone https://github.com/FriendsOfCake/vagrant-ansible.git --recurse-submodules
+	cd vagrant-ansible
+	vagrant up
+	```
 
-The setup is take some time to finish. Sit back and enjoy!
+2. Choose the CakePHP version you want to deploy (2 or 3)
 
-When the setup is done browse to `http://192.168.13.37/` in your browser, and you should have some sort of `It works!` page!
+3. Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
 
+4. The setup will take some time to finish. Sit back and enjoy!
 
-### Custom Domain Name
-
-Edit your /etc/hosts file to have the following line:
-
-```
-192.168.13.37 www.app.dev app.dev
-```
-
-Note that www.app.dev will actually redirect to app.dev
-
-
-### Setup the Application
-
-Anything in `app/webroot/index.php` will be served up, and all other `index.php` files ignored.
-
-Below you can choose between two methods to create a new application.
-
-
-#### Create new application with [cakephp/app](https://github.com/cakephp/app) for CakePHP 3.0.x:
-
-```
-composer -sdev create-project cakephp/app app
-```
-
-Browse to `http://app.dev`, an CakePHP application should be running now!
-
-Follow more instructions on how to configure the application at [cakephp/app](https://github.com/cakephp/app).
-
-
-#### Create new application with [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template):
-
-```
-composer -sdev create-project friendsofcake/app-template .
-```
-
-Browse to `http://app.dev`, an CakePHP application should be running now!
-
-Follow more instructions on how to configure the application at [FriendsOfCake/app-template](https://github.com/FriendsOfCake/app-template).
+5. When the setup is done browse to `http://app.dev/` in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
 
 
 ## Installation for Multiple Applications
@@ -90,15 +55,18 @@ After configured, run it with:
 vagrant up
 ```
 
-
 ### Custom Domain Name
 
-Edit your /etc/hosts file to have the following line:
+Edit your Vagrantfile to have the following line:
 
 ```
-192.168.13.37 www.$appName.dev $appName.dev www.$anotherAppName.dev $anotherAppName.dev
+config.hostsupdater.aliases = [
+	"app.dev",
+	"phpmyadmin.app.dev",
+	"whatever.dev",
+	"anotherapp.dev"
+]
 ```
-
 
 ### Configure Synced Folders
 
@@ -109,7 +77,6 @@ Add a new [synced_folder](http://docs.vagrantup.com/v2/synced-folders/basic_usag
 ```
 config.vm.synced_folder "/path/on/local", "/path/on/vagrant", :nfs => true
 ```
-
 
 ### Configure Nginx virtual hosts
 

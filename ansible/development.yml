@@ -4,6 +4,12 @@
   user: vagrant
   sudo: yes
 
+  vars_prompt:
+
+  - name: "cakephp_version"
+    prompt: "What version of CakePHP do you want to deploy? (2 or 3)?"
+    default: "2"
+
   roles:
     - system
     - php
@@ -12,3 +18,5 @@
     - postgresql
     - redis
     - memcached
+    - phpmyadmin
+    - cakephp
