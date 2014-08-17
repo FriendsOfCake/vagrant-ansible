@@ -2,24 +2,24 @@
 
 Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with the following features:
 
-- Ubuntu 12.04 Precise Pangolin
-- Ningx 1.1
+- Ubuntu 14.04 Trusty Tahr (Ubuntu Server 64-bit 14.04 cloud image)
+- Ningx 1.4.6
 - PHP 5.5
 - Percona 5.5 (MySQL Drop-in Replacement)
-- Postgres 9.1
+- Postgres 9.3
 - Redis 2.8
 - Memcached 1.4
-- Git 1.7
+- Git 1.9
 - Composer
-- phpMyAdmin 3.4.10
+- phpMyAdmin 4.0.10
 
 
 ## Requirements
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
-- [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.4.3
+- [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.6.3
 - [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater).
-- [Ansible](http://docs.ansible.com/intro_installation.html). Requires at least 1.6!
+- [Ansible](http://docs.ansible.com/intro_installation.html). Tested on 1.7 Requires at least 1.6!
 
 ## Installation
 
