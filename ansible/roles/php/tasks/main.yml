@@ -34,3 +34,6 @@
 
 - name: Start php-fpm
   service: name=php5-fpm state=started enabled=true
+
+  name: Set permissions on /var/lib/php5 to ensure webserver session reading/writing
+  file: path=/var/lib/php5 mode=0775 owner=root group=www-data state=directory
