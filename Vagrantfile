@@ -1,5 +1,10 @@
 VAGRANTFILE_API_VERSION = "2"
 
+#Check Vagrant hostsupdater plugin is installed, if not provice command to do so
+unless Vagrant.has_plugin?("vagrant-hostsupdater")
+  raise "\n\nvagrant-hostsupdater plugin is not installed! Please install using:\n\n $ vagrant plugin install vagrant-hostsupdater\n"
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "trusty64"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
