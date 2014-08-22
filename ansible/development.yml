@@ -40,6 +40,7 @@
     - { role: postgresql, when: database_engine == 'p' }
     #Database management tools
     - { role: phpmyadmin, when: database_engine == 'c' or database_engine == 'm' }
+    - { role: phppgadmin, when: database_engine == 'p' }
     #Key value stores
     - { role: redis, when: redis == 'y' }
     - { role: memcached, when: memcached == 'y' }
