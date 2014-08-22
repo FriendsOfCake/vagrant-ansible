@@ -1,0 +1,10 @@
+---
+- name: Install MySQL Server and Client
+  apt: pkg={{ item }} state=present
+  with_items:
+    - mysql-common
+    - mysql-server
+    - mysql-client
+
+- name: Start MySQL Server
+  service: name=mysql state=started enabled=true

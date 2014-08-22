@@ -22,7 +22,7 @@ nginx_sites:
   - server:
       file_name: app
       listen: 80
-      server_name: app.dev
+      server_name: "{{ vagrant_hostname }}"
       root: /vagrant/www/webroot
       access_log: /var/log/nginx/app-access.log
       error_log: /var/log/nginx/app-error.log
@@ -41,7 +41,7 @@ nginx_sites:
   - server:
       file_name: phpmyadmin
       listen: 80
-      server_name: phpmyadmin.app.dev
+      server_name: phpmyadmin.{{ vagrant_hostname }}
       root: /usr/share/phpmyadmin/
       access_log: /var/log/nginx/phpmyadmin-access.log
       error_log: /var/log/nginx/phpmyadmin-error.log
@@ -60,5 +60,5 @@ nginx_sites:
   - server:
       file_name: www.app
       listen: 80
-      server_name: www.app.dev
+      server_name: www.{{ vagrant_hostname }}
       rewrite: "^ http://app.dev$uri permanent"
