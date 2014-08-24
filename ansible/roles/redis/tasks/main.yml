@@ -1,6 +1,7 @@
 ---
 - name: Add PPA
   apt_repository: repo="ppa:chris-lea/redis-server"
+  ignore_errors: yes #Can fail, fallback default Ubuntu repo's contain minimal requirements
 
 - name: Install Redis
   apt: pkg=redis-server state=present

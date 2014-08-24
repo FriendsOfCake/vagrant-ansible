@@ -1,6 +1,7 @@
 ---
 - name: Add PPA
   apt_repository: repo="ppa:ondrej/php5"
+  ignore_errors: yes #Can fail, fallback default Ubuntu repo's contain minimal requirements
 
 - name: Install PHP and Dependencies
   apt: pkg={{ item }} state=present
