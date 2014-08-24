@@ -1,9 +1,10 @@
 #######################################
 # You can edit the settings bellow
 #######################################
-ENV['VAGRANT_HOSTNAME'] = "cake.dev" #Set the name of your server
-ENV['VAGRANT_IP'] = "192.168.13.16" #Set the ip you wish to use
+ENV['VAGRANT_HOSTNAME'] = "app.dev" #Set the name of your server / domain
+ENV['VAGRANT_IP'] = "192.168.13.37" #Set the ip you wish to use
 
+ENV['VAGRANT_INTERACTIVE'] = "true"  #Do you want to be asked questions about what to install? Set to true
 
 # ! DO NOT EDIT BELOW
 VAGRANTFILE_API_VERSION = "2"
@@ -39,8 +40,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #Use ansible to privision the server
   config.vm.provision "ansible" do |ansible|
     ansible.limit = 'all'
-    ansible.playbook = "ansible/development.yml"
+    ansible.playbook = "ansible/" + (ENV['VAGRANT_INTERACTIVE'] == "true" ? "development_interactive.yml" : "development.yml")
     ansible.inventory_path = "ansible/hosts"
+	ansible.extra_vars = {
+  		vagrant_hostname: ENV['VAGRANT_HOSTNAME']
+ 	}
   end
 
   config.vm.post_up_message = "\n - Visit http://"+ENV['VAGRANT_HOSTNAME']+" for your CakePHP application.\n - Visit http://phpmyadmin."+ENV['VAGRANT_HOSTNAME']+" for phpMyAdmin (if chosen)\n - Visit http://phppgadmin."+ENV['VAGRANT_HOSTNAME']+" for phpPgAdmin (if chosen)\n\n"
