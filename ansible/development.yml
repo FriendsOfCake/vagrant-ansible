@@ -4,10 +4,6 @@
   user: vagrant
   sudo: yes
 
-  #Read hostsname configuration from env var
-  vars:
-    vagrant_hostname: "{{ lookup('env','VAGRANT_HOSTNAME') }}"
-
   vars_prompt:
 
   #CakePHP version
@@ -15,35 +11,20 @@
     prompt: "What version of CakePHP do you want to deploy? (2 or 3)?"
     default: "2"
 
-  #Install database engine?
-  - name: "database_engine"
-    prompt: "Install Percona (c), MySQL (m), PostgreSQL (p) or none (n)?"
-    default: "c"
-
-  #Install redis?
-  - name: "redis"
-    prompt: "Install Redis (y/n)?"
-    default: "n"
-
-  #Install memcached?
-  - name: "memcached"
-    prompt: "Install Memcached (y/n)?"
-    default: "n"
-
   roles:
     - system
     - php
     - bennojoy.nginx
     #Database engines
-    - { role: percona, when: database_engine == 'c' }
-    - { role: mysql, when: database_engine == 'm' }
-    - { role: postgresql, when: database_engine == 'p' }
+    - { role: percona }
+    - { role: postgresql }
     #Database management tools
-    - { role: phpmyadmin, when: database_engine == 'c' or database_engine == 'm' }
-    - { role: phppgadmin, when: database_engine == 'p' }
+    - { role: phpmyadmin }
+    - { role: phppgadmin }
     #Key value stores
-    - { role: redis, when: redis == 'y' }
-    - { role: memcached, when: memcached == 'y' }
+    - { role: redis }
+    - { role: memcached }
     #CakePHP
     - { role: cakephp2, when: cakephp_version == '2' }
     - { role: cakephp3, when: cakephp_version == '3' }
+
