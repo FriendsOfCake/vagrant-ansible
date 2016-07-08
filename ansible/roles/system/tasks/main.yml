@@ -1,6 +1,6 @@
 ---
 - name: Apt-get update before installing
-  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=3600
 
 - name: Install Essential Packages
   apt: pkg={{ item }} state=present
