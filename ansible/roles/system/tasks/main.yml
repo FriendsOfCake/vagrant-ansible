@@ -2,11 +2,8 @@
 - name: Apt-get update before installing
   apt: update_cache=yes
 
-- name: Install Essential Packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - curl
-    - python-pycurl
-
 - name: Install Git
   apt: pkg=git-core state=present
+
+- name: Create www directory to contain CakePHP code
+  command: mkdir -p /vagrant/www/ creates=/vagrant/www

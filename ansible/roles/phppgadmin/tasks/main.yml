@@ -1,0 +1,9 @@
+---
+- name: Get phpPgAdmin
+  get_url: url=http://downloads.sourceforge.net/project/phppgadmin/phpPgAdmin%20%5Bstable%5D/phpPgAdmin-5.1/phpPgAdmin-5.1.tar.gz dest=/tmp/phppgadmin.tar.gz
+
+- name: Untar phpPgAdmin
+  unarchive: src=/tmp/phppgadmin.tar.gz dest=/usr/share/ copy=no
+
+- name: Rename extracted directory
+  command: mv /usr/share/phpPgAdmin-5.1/ /usr/share/phppgadmin/

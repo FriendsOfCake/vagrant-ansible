@@ -6,6 +6,7 @@
 
   vars_prompt:
 
+  #CakePHP version
   - name: "cakephp_version"
     prompt: "What version of CakePHP do you want to deploy? (2 or 3)?"
     default: "3"
@@ -14,9 +15,16 @@
     - system
     - php
     - bennojoy.nginx
-    - percona
-    - postgresql
-    - redis
-    - memcached
-    - phpmyadmin
-    - cakephp
+    #Database engines
+    - { role: percona }
+    - { role: postgresql }
+    #Database management tools
+    - { role: phpmyadmin }
+    - { role: phppgadmin }
+    #Key value stores
+    - { role: redis }
+    - { role: memcached }
+    #CakePHP
+    - { role: cakephp2, when: cakephp_version == '2' }
+    - { role: cakephp3, when: cakephp_version == '3' }
+

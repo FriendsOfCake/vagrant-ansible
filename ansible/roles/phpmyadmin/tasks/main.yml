@@ -17,5 +17,5 @@
 - name: Install phpMyAdmin
   apt: pkg=phpmyadmin state=present
 
-- name: Set root MySQL password
-  command: mysqladmin -u root password temppassword
+- name: Copy AllowEmptyPassword configuration
+  template: src=config.inc.php dest=/etc/phpmyadmin/config.inc.php

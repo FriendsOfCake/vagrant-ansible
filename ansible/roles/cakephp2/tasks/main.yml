@@ -1,0 +1,4 @@
+---
+- name: Deploying CakePHP 2.x
+  command: composer -sdev -n create-project friendsofcake/app-template . chdir=/vagrant/www/ creates=/vagrant/www/app
+

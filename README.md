@@ -1,6 +1,6 @@
 # Vagrant Ansible for CakePHP
 
-Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with the following features:
+Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with the following (optional) features:
 
 - Ubuntu 14.04 Trusty Tahr (Ubuntu Server 64-bit 14.04 cloud image)
 - Ningx 1.4.6
@@ -17,8 +17,8 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 ## Requirements
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Tested on 4.3.x, but 4.2.x should also work.
-- [Vagrant](http://www.vagrantup.com/downloads.html). Tested on 1.6.3
-- [Vagrant hostupdater](https://github.com/cogitatio/vagrant-hostsupdater).
+- [Vagrant](http://www.vagrantup.com/downloads.html). Requires >= 1.6.2
+	- [Vagrant hostupdater plugin](https://github.com/cogitatio/vagrant-hostsupdater).
 - [Ansible](http://docs.ansible.com/intro_installation.html). Tested on 1.7 Requires at least 1.6!
 
 ## Installation
@@ -28,16 +28,18 @@ Vagrant Ansible creates a Vagrant installation for CakePHP using Ansible with th
 	```
 	git clone https://github.com/FriendsOfCake/vagrant-ansible.git --recurse-submodules
 	cd vagrant-ansible
-	vagrant up
 	```
+2. Change the first section of the Vagrantfile to your needs
 
-2. Choose the CakePHP version you want to deploy (2 or 3)
+3. Run: `vagrant up`
 
-3. Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
+3. Answer the questions about the CakePHP version, database engine, etc you want to install. (Warning: Due to an Ansible bug your input will not be visible but will be there!)
 
-4. The setup will take some time to finish. Sit back and enjoy!
+4. Note that this Vagrant machine uses NFS mounts as it significantly improves the speed of the application. You may be asked for the root password while trying to setup shared mounts.
 
-5. When the setup is done browse to `http://app.dev/` in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
+5. The setup will take some time to finish. Sit back and enjoy!
+
+6. When the setup is done browse to http://[whatever hostname you set in the Vagrantfile] in your browser, and you should have a default CakePHP 2.x or 3.x welcome page!
 
 
 ## Installation for Multiple Applications

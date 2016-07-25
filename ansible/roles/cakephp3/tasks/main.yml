@@ -1,0 +1,3 @@
+---
+- name: Deploying CakePHP 3.x
+  command: composer -sdev -n create-project cakephp/app . chdir=/vagrant/www/ creates=/vagrant/www/app
