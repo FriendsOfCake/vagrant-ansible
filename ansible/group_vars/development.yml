@@ -1,64 +1,61 @@
 ---
 nginx_http_params:
-  access_log: /var/log/nginx/access.log
-  error_log: /var/log/nginx/error.log
+  - access_log /var/log/nginx/access.log
+  - error_log /var/log/nginx/error.log
 
 nginx_sites:
-  - server:
-      file_name: default
-      listen: 80
-      server_name: localhost
-      root: /usr/share/nginx/www
-      index: index.html
-      location1:
-        name: /
-        try_files: "$uri $uri/ /index.html"
-      location2:
-        name: /images/
-        root: /usr/share
-        autoindex: "off"
+  default:
+    - listen 80
+    - server_name localhost
+    - root usr/share/nginx/www
+    - index index.html
+    - location / {
+        try_files $uri $uri/ /index.html;
+      }
+    - location /images/ {
+        root /usr/share;
+        autoindex off;
+      }
 
   #CakePHP app server
-  - server:
-      file_name: app
-      listen: 80
-      server_name: app.dev
-      root: /vagrant/www/webroot
-      access_log: /var/log/nginx/app-access.log
-      error_log: /var/log/nginx/app-error.log
-      index: index.php
-      location1:
-        name: /
-        try_files: "$uri $uri/ /index.php?$uri&$args"
-        expires: max
-        access_log: "off"
-      location2:
-        name: "~ \\.php$"
-        fastcgi_pass: "unix:/var/run/php5-fpm.sock"
-        include: fastcgi_params
+  app:
+    - listen 80
+    - server_name app.dev
+    - root /vagrant/www/webroot
+    - access_log /var/log/nginx/app-access.log
+    - error_log /var/log/nginx/app-error.log
+    - index index.php
+    - location / {
+        try_files $uri $uri/ /index.php?$args;
+      }
+    - location ~ \.php$ {
+        try_files $uri =404;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/var/run/php7.1-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      }
 
   #phpMyAdmin server
-  - server:
-      file_name: phpmyadmin
-      listen: 80
-      server_name: phpmyadmin.app.dev
-      root: /usr/share/phpmyadmin/
-      access_log: /var/log/nginx/phpmyadmin-access.log
-      error_log: /var/log/nginx/phpmyadmin-error.log
-      index: index.php
-      location1:
-        name: /
-        try_files: "$uri $uri/ /index.php"
-        expires: max
-        access_log: "off"
-      location2:
-        name: "~ \\.php$"
-        fastcgi_pass: "unix:/var/run/php5-fpm.sock"
-        include: fastcgi_params
+  phpmyadmin:
+    - listen 80
+    - server_name phpmyadmin.app.dev
+    - root /usr/share/phpmyadmin/
+    - access_log /var/log/nginx/phpmyadmin-access.log
+    - error_log /var/log/nginx/phpmyadmin-error.log
+    - index index.php
+    - location / {
+        try_files $uri $uri/ /index.php?$args;
+      }
+    - location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php7.1-fpm.sock;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      }
 
   # Redirect www.app.dev to app.dev
-  - server:
-      file_name: www.app
-      listen: 80
-      server_name: www.app.dev
-      rewrite: "^ http://app.dev$uri permanent"
+  www.app:
+    - listen 80
+    - server_name www.app.dev
+    - rewrite ^ http://app.dev$uri permanent

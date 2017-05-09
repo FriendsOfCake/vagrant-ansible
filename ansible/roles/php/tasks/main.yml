@@ -1,36 +1,42 @@
 ---
 - name: Add PPA
-  apt_repository: repo="ppa:ondrej/php5"
+  apt_repository: repo="ppa:ondrej/php"
+
+- name: Apt-get update before installing
+  apt: update_cache=yes
 
 - name: Install PHP and Dependencies
   apt: pkg={{ item }} state=present
   with_items:
-    - php5-fpm
-    - php5-cli
-    - php5-common
-    - php5-curl
-    - php5-gd
-    - php5-geoip
-    - php5-gmp
-    - php5-imagick
-    - php5-intl
-    - php5-json
-    - php5-mcrypt
-    - php5-memcache
-    - php5-memcached
-    - php5-redis
-    - php5-mysql
-    - php5-xdebug
-    - php5-sqlite
-    - php-apc
+    - php-fpm
+    - php-cli
+    - php-common
+    - php-curl
+    - php-gd
+    - php-geoip
+    - php-gmp
+    - php-imagick
+    - php-intl
+    - php-json
+    - php-mcrypt
+    - php-memcache
+    - php-memcached
+    - php-redis
+    - php-mysql
+    - php-xdebug
+    - php-sqlite3
+    - php-apcu
     - php-pear
 
+- name: Get Composer Installer
+  get_url: url=https://getcomposer.org/installer dest=/tmp/composer.php mode=0755
+
 - name: Install Composer
-  get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=0755 validate_certs=no
+  command: php /tmp/composer.php --quiet --install-dir="/usr/local/bin" --filename="composer" creates=/usr/local/bin/composer
 
 - name: Copy pool configuration
-  template: src=www.conf dest=/etc/php5/fpm/pool.d/
+  template: src=www.conf dest=/etc/php/7.1/fpm/pool.d/
   notify: restart php-fpm
 
 - name: Start php-fpm
-  service: name=php5-fpm state=started enabled=true
+  service: name=php7.1-fpm state=started enabled=true

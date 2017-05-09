@@ -19,3 +19,4 @@
 
 - name: Set root MySQL password
   command: mysqladmin -u root password temppassword
+  ignore_errors: yes

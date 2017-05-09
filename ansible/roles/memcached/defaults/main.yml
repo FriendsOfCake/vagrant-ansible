@@ -1,6 +1,6 @@
 ---
 memory: 64
-port: 11_211
+tcp_port: 11_211
 udp_port: 11_211
 listen: 0.0.0.0
 maxconn: 1024
