@@ -1,6 +1,6 @@
 ---
 - name: Add APT Key
-  apt_key: url="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x1C4CBDCDCD2EFD2A"
+  apt_key: keyserver=keyserver.ubuntu.com id=8507EFA5
 
 - name: Add APT Repository
   apt_repository: repo="deb http://repo.percona.com/apt precise main"
@@ -8,12 +8,16 @@
 - name: Add APT Source Repository
   apt_repository: repo="deb-src http://repo.percona.com/apt precise main"
 
+- name: Copy Percona Priority
+  copy: src=00percona.pref dest=/etc/apt/preferences.d/00percona.pref
+
 - name: Install Percona Server and Client
-  apt: pkg={{ item }} state=present
+  apt: pkg={{ item }} state=present update_cache=yes
   with_items:
-    - percona-server-common-5.5
-    - percona-server-server-5.5
-    - percona-server-client-5.5
+    - percona-server-common-5.6
+    - percona-server-server-5.6
+    - percona-server-client-5.6
+    - libperconaserverclient18.1
 
 - name: Start Percona Server
   service: name=mysql state=started enabled=true

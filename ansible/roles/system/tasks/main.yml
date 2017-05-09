@@ -7,6 +7,7 @@
   with_items:
     - curl
     - python-pycurl
+    - unzip
 
 - name: Install Git
   apt: pkg=git-core state=present

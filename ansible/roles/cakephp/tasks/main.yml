@@ -1,11 +1,14 @@
 ---
 - name: Create www directory to contain CakePHP code
-  command: mkdir -p /vagrant/www/ creates=/vagrant/www
+  file: path=/vagrant/www/ state=directory mode=0755
 
 - name: Deploying CakePHP 2.x
-  command: composer -sdev -n create-project friendsofcake/app-template . chdir=/vagrant/www/ creates=/vagrant/www/app
+  command: composer create-project friendsofcake/app-template . chdir=/vagrant/www/ creates=/vagrant/www/app
   when: cakephp_version == "2"
 
 - name: Deploying CakePHP 3.x
-  command: composer -sdev -n create-project cakephp/app . chdir=/vagrant/www/ creates=/vagrant/www/app
+  command: composer create-project -q -n --prefer-dist cakephp/app . chdir=/vagrant/www/ creates=/vagrant/www/webroot
   when: cakephp_version == "3"
+
+- name: Reload Nginx
+  service: name=nginx state=restarted

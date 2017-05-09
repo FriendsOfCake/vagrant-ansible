@@ -1,7 +1,4 @@
 ---
-- name: Add PPA
-  apt_repository: repo="ppa:chris-lea/redis-server"
-
 - name: Install Redis
   apt: pkg=redis-server state=present
 

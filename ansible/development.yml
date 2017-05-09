@@ -2,7 +2,8 @@
 - name: Deploys the whole software stack for a CakePHP application
   hosts: development
   user: vagrant
-  sudo: yes
+  become: yes
+  become_user: root
 
   vars_prompt:
 
@@ -13,7 +14,7 @@
   roles:
     - system
     - php
-    - bennojoy.nginx
+    - ansible-role-nginx
     - percona
     - postgresql
     - redis
